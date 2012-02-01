@@ -1,0 +1,62 @@
+[core]
+  editor = /usr/bin/vim
+  excludesfile = ~/.gitignore
+[user]
+  name = Hitoshi Kuroyanagi
+  email = h-kuro@minerva.co.jp
+[color]
+  ui = auto
+[alias]
+  a = add
+  ad = add
+  ada = add -A
+
+  bl = blame
+  br = branch
+  bra = branch -a
+  brd = branch -d
+  brdf = branch -D # BRanch Delete Force
+  brm = branch -m
+  brr = branch -r
+
+  ca = commit -v --amend
+  ci = commit -v
+  cl = clone
+  cm = commit -m
+  co = checkout
+  cob = checkout -b
+
+  di = diff
+  dic = diff --cached
+
+  fh = fetch
+
+  gr = grep
+
+  l = log --format='[%h %ci] %s (%cn)' --date=local
+  lg = log --graph --format='[%h %ci] %s (%cn)' --date=local # Log Graph
+  lp = log -p
+
+  mg = merge
+  mgnf = merge --no-ff # MerGe No Fast-foreword
+
+  pl = pull --prune # always delete stale remote branches
+  pr = pull --rebase
+  ps = push
+  psf = push --force
+  pst = push --tags
+
+  rb = rebase
+  rbi = rebase -i
+  rbrd = push --delete origin # Remote BRanch Delete
+  rh = reset --hard
+  rmc = rm --cached
+  rs = reset
+  ru = remote update
+
+  sc = shortlog -sn # SCouter
+  sh = stash
+  st = status -sb
+
+  t = tag
+  td = tag -d
