@@ -1,3 +1,5 @@
+
+
 "Vim Bundles "  {{{
 "How to set up .
 "git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -158,20 +160,11 @@ noremap <Right> <Nop>
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Right> <Nop>
-nnoremap zl zL
-nnoremap zh zH
-nnoremap gj :bnext<CR>
-nnoremap gk :bprevious<CR>
-noremap gh gT
-noremap gl gt
 noremap <CR> i<CR><ESC>
 nnoremap <silent> <S-Left>  :5wincmd <<CR>
 nnoremap <silent> <S-Right> :5wincmd ><CR>
 nnoremap <silent> <S-Up>    :5wincmd -<CR>
 nnoremap <silent> <S-Down>  :5wincmd +<CR>
-nnoremap bp :bprevious<CR>
-nnoremap bn :bnext<CR>
-nnoremap bd :bdelete<CR>
 
 " helpの言語の優先順位
 set helplang=ja,en
@@ -372,17 +365,19 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC> :q<CR>
 nnoremap [tabcmd]  <nop>
 nmap     t [tabcmd]
 
-nnoremap <silent> [tabcmd]f :<C-u>tabfirst<cr>
-nnoremap <silent> [tabcmd]l :<C-u>tablast<cr>
-nnoremap <silent> [tabcmd]n :<C-u>tabnext<cr>
-nnoremap <silent> [tabcmd]N :<C-u>tabNext<cr>
-nnoremap <silent> [tabcmd]p :<C-u>tabprevious<cr>
+nnoremap <silent> [tabcmd]u :<C-u>tabnext<cr>
+nnoremap <silent> [tabcmd]U :<C-u>tabNext<cr>
+nnoremap <silent> [tabcmd]y :<C-u>tabprevious<cr>
+nnoremap <silent> [tabcmd]Y :<C-u>tabprevious<cr>
 nnoremap <silent> [tabcmd]e :<C-u>tabedit<cr>
 nnoremap <silent> [tabcmd]c :<C-u>tabclose<cr>
 nnoremap <silent> [tabcmd]o :<C-u>tabonly<cr>
 nnoremap <silent> [tabcmd]s :<C-u>tabs<cr>
 
-
+" バッファのキー設定
+nnoremap bn :bprevious<CR>
+nnoremap bm :bnext<CR>
+nnoremap bd :bdelete<CR>
 
 let mapleader=","
 

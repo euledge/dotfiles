@@ -22,3 +22,6 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 [[ -s "/home/kuroyanagi/.rvm/scripts/rvm" ]] && source "/home/kuroyanagi/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# set JAVA_HOME
+export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk
