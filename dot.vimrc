@@ -48,8 +48,6 @@ Bundle 'ujihisa/rdoc.vim'
 "Bundle 'pekepeke/titanium-vim'
 Bundle 'smartchr'
 "Bundle 'ref.vim'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
 Bundle 'Vim-Rspec'
 Bundle 'grep.vim'
 
@@ -353,8 +351,8 @@ nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]u :<C-u>Unite buffer file_mru<CR>
 " 全部
 nnoremap <silent> [unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-" FuzzyFinder.vim
-nnoremap <silent> [unite]z :<C-u>FufFile! **/<CR>
+" FuzzyFinder
+nnoremap <silent> [unite]z :<C-u>Unite file_rec<CR>
 " タブで開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('tabopen')
 " ESCキーを2回押すと終了する
