@@ -1,5 +1,3 @@
-
-
 "Vim Bundles "  {{{
 "How to set up .
 "git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -11,12 +9,6 @@ set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-
-"set cursorline
-set wrap
-set wildmenu    
-set smartindent
-set ignorecase smartcase
 
 " My Bundles here:
 "
@@ -31,6 +23,9 @@ Bundle 'tpope/vim-endwise'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
+Bundle 'tsukkee/unite-tag'
+Bundle 'h1mesuke/unite-outline'
+Bundle 'basyura/unite-rails'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'csexton/rvm.vim'
@@ -42,75 +37,18 @@ Bundle 'leshill/vim-json'
 Bundle 'taku-o/vim-ro-when-swapfound'
 Bundle 'taku-o/vim-toggle'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'mattn/calendar-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'ujihisa/rdoc.vim'
 "Bundle 'pekepeke/titanium-vim'
 Bundle 'smartchr'
 "Bundle 'ref.vim'
-Bundle 'Vim-Rspec'
-Bundle 'grep.vim'
-
-" vim-scripts repos
-" Bundle 'molokai'
-
-" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on     " required!
 " }}}
 
 " Japanese " {{{
-" from http://www.kawaz.jp/pukiwiki/?vim
-if &encoding !=# 'utf-8'
-  set encoding=japan
-  set fileencoding=japan
-endif
-if has('iconv')
-  let s:enc_euc = 'euc-jp'
-  let s:enc_jis = 'iso-2022-jp'
-  " iconvがeucJP-msに対応しているかをチェック
-  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'eucjp-ms'
-    let s:enc_jis = 'iso-2022-jp-3'
-  " iconvがJISX0213に対応しているかをチェック
-  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'euc-jisx0213'
-    let s:enc_jis = 'iso-2022-jp-3'
-  endif
-  " fileencodingsを構築
-  if &encoding ==# 'utf-8'
-    let s:fileencodings_default = &fileencodings
-    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
-    let &fileencodings = &fileencodings .','. s:fileencodings_default
-    unlet s:fileencodings_default
-  else
-    let &fileencodings = &fileencodings .','. s:enc_jis
-    set fileencodings+=utf-8,ucs-2le,ucs-2
-    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
-      set fileencodings+=cp932
-      set fileencodings-=euc-jp
-      set fileencodings-=euc-jisx0213
-      set fileencodings-=eucjp-ms
-      let &encoding = s:enc_euc
-      let &fileencoding = s:enc_euc
-    else
-      let &fileencodings = &fileencodings .','. s:enc_euc
-    endif
-  endif
-  " 定数を処分
-  unlet s:enc_euc
-  unlet s:enc_jis
-endif
-" 日本語を含まない場合は fileencoding に encoding を使うようにする
-if has('autocmd')
-  function! AU_ReCheck_FENC()
-    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-      let &fileencoding=&encoding
-    endif
-  endfunction
-  autocmd BufReadPost * call AU_ReCheck_FENC()
-endif
+" 文字エンコーディング
+set fileencodings=utf-8,iso-2022-jp-3,eucjp-ms,cp932,ucs-bom,default,latin1
 " 改行コードの自動認識
 set fileformats=unix,dos,mac
 " □とか○の文字があってもカーソル位置がずれないようにする
@@ -119,13 +57,14 @@ if exists('&ambiwidth')
 endif
 " }}}
 
-
-
-
-
 "BASIC " {{{ 
 " set gfn=ゆたぽん（コーディング）\ 10
 set gfn=ゆたぽん（COD）K:h13
+
+set wrap
+set wildmenu    
+set smartindent
+set ignorecase smartcase
 " 行番号
 set number 
 set foldmethod=marker
@@ -151,6 +90,11 @@ set showtabline=2
 
 syntax enable
 
+" キーバインド
+" insertモードからノーマルモードに戻る
+imap <C-j> <C-[>
+nmap <C-j> <C-[>
+" 矢印キー禁止
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -158,7 +102,9 @@ noremap <Right> <Nop>
 inoremap <Up> <Nop>
 inoremap <Down> <Nop>
 inoremap <Right> <Nop>
+" normalモードでもカーソル位置で改行
 noremap <CR> i<CR><ESC>
+" ウィンドサイズの変更
 nnoremap <silent> <S-Left>  :5wincmd <<CR>
 nnoremap <silent> <S-Right> :5wincmd ><CR>
 nnoremap <silent> <S-Up>    :5wincmd -<CR>
@@ -197,10 +143,6 @@ let g:indent_guides_auto_colors=1
 "autocmd FileType haml inoremap <expr> = smartchr#loop('= ', ' => ', '=', ' == ')
 inoremap <expr> , smartchr#one_of(', ', ',')
 
-imap <C-j> <C-[>
-nmap <C-j> <C-[>
-
-
 
 set antialias                " アンチエイリアシング
 
@@ -230,15 +172,7 @@ nmap g# g#zz
 
 " }}}
 
-
-
-
-
-
-
-
-" Other " {{
-" {
+" Other " {{{
 " rails.vim {
 "let g:rails_level=4
 let g:rails_default_file="app/controllers/application_controller.rb"
