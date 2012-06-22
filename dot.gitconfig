@@ -2,8 +2,8 @@
   editor = /usr/bin/vim
   excludesfile = ~/.gitignore
 [user]
-  name = Hitoshi Kuroyanagi
-  email = h-kuro@minerva.co.jp
+	name = Hitoshi kuroyanagi
+	email = h-kuro@minerva.co.jp
 [color]
   ui = auto
 [alias]
@@ -60,3 +60,5 @@
 
   t = tag
   td = tag -d
+[credential]
+	helper = cache --timeout=3600

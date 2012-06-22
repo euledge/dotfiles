@@ -172,11 +172,11 @@ nmap g# g#zz
 
 " }}}
 
+
 " Other " {{{
 " rails.vim {
 "let g:rails_level=4
 let g:rails_default_file="app/controllers/application_controller.rb"
-
 
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -313,7 +313,6 @@ nnoremap bd :bdelete<CR>
 
 let mapleader=","
 
-
 autocmd BufRead, BufNewFile *.rd, *.rdoc set filetype=rdoc
 
 " quickrun rspec
@@ -322,12 +321,14 @@ let g:quickrun_config._ = {'runner' : 'vimproc'}
 let g:quickrun_config['rspec/bundle'] = {
   \ 'type': 'rspec/bundle', 
   \ 'command': 'rspec', 
-  \ 'exec': '$rvm_bin_path/bundle exec %c %s'
+  \ 'cmdopt': '--format documentation', 
+  \ 'exec': "bundle exec %c %o %s"
   \}
 let g:quickrun_config['rspec/normal'] = {
   \ 'type': 'rspec/normal', 
-  \ 'command': '$rvm_bin_path/rspec', 
-  \ 'exec': '%c %s'
+  \ 'command': 'rspec', 
+  \ 'cmdopt': '--format documentation', 
+  \ 'exec': "%c %o %s"
   \}
 function! RSpecQuickrun()
     let b:quickrun_config = {'type' : 'rspec/bundle'}
