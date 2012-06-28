@@ -173,6 +173,9 @@ nmap g# g#zz
 " }}}
 
 
+
+
+
 " Other " {{{
 " rails.vim {
 "let g:rails_level=4
@@ -320,8 +323,9 @@ let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner' : 'vimproc'}
 let g:quickrun_config['rspec/bundle'] = {
   \ 'type': 'rspec/bundle', 
+  \ 'filetype': 'rspec-result', 
   \ 'command': 'rspec', 
-  \ 'cmdopt': '--format documentation', 
+  \ 'cmdopt': "--format documentation", 
   \ 'exec': "bundle exec %c %o %s"
   \}
 let g:quickrun_config['rspec/normal'] = {
