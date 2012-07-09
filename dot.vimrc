@@ -173,9 +173,6 @@ nmap g# g#zz
 " }}}
 
 
-
-
-
 " Other " {{{
 " rails.vim {
 "let g:rails_level=4
@@ -282,16 +279,27 @@ noremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 " 最近使ったファイルの一覧
 nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
-" レジスタ一覧
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 " ファイルとバッファ
 nnoremap <silent> [unite]u :<C-u>Unite buffer file_mru<CR>
 " 全部
 nnoremap <silent> [unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " FuzzyFinder
 nnoremap <silent> [unite]z :<C-u>Unite file_rec<CR>
+" Unite rails
+nnoremap <silent> [unite]r :<C-u>Unite rails/
+nnoremap <silent> [unite]rmo :<C-u>Unite rails/model<CR>
+nnoremap <silent> [unite]rcon   :<C-u>Unite rails/controller<CR>
+nnoremap <silent> [unite]rvi :<C-u>Unite rails/view<CR>
+nnoremap <silent> [unite]rhel :<C-u>Unite rails/helper<CR>
+nnoremap <silent> [unite]rlib :<C-u>Unite rails/lib<CR>
+nnoremap <silent> [unite]rdb :<C-u>Unite rails/db<CR>
+nnoremap <silent> [unite]rconfig :<C-u>Unite rails/config<CR>
+nnoremap <silent> [unite]rlog :<C-u>Unite rails/log<CR>
 " タブで開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('tabopen')
+" 分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC> :q<CR>
@@ -325,19 +333,23 @@ let g:quickrun_config['rspec/bundle'] = {
   \ 'type': 'rspec/bundle', 
   \ 'filetype': 'rspec-result', 
   \ 'command': 'rspec', 
-  \ 'cmdopt': "--format documentation", 
-  \ 'exec': "bundle exec %c %o %s"
+  \ 'cmdopt': "--format progress", 
+  \ 'exec': "bundle exec %c %o %s %a"
   \}
-let g:quickrun_config['rspec/normal'] = {
-  \ 'type': 'rspec/normal', 
-  \ 'command': 'rspec', 
-  \ 'cmdopt': '--format documentation', 
-  \ 'exec': "%c %o %s"
+let g:quickrun_config['cucumber/bundle'] = {
+  \ 'type': 'cucumber/bundle', 
+  \ 'filetype': 'cucumber-result', 
+  \ 'command': 'cucumber', 
+  \ 'cmdopt': "--format progress", 
+  \ 'exec': "bundle exec %c %o %s %a"
   \}
 function! RSpecQuickrun()
-    let b:quickrun_config = {'type' : 'rspec/bundle'}
+    let b:quickrun_config = {'type' : 'rspec/bundle', 'split' : ''}
 endfunction
 autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 
+function! CucumberQuickrun()
+    let b:quickrun_config = {'type' : 'cucumber/bundle', 'split' : ''}
+endfunction
+autocmd BufReadPost *.feature call CucumberQuickrun()
 " " }}}
-
