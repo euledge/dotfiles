@@ -170,6 +170,12 @@ nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
+" 保存する際に行末スペースを削除
+autocmd BufWritePre * :%s/\s\+$//ge
+
+
+
+
 " }}}
 
 
