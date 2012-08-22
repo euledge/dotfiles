@@ -23,6 +23,7 @@ ln -s $DOTFILES/vimfiles $HOME/.vim
 ln -s $DOTFILES/dot.conkyrc $HOME/.conkyrc
 ln -s $DOTFILES/conkyfiles/scripts $HOME/scripts
 ln -s $DOTFILES/conkyfiles/.fonts $HOME/.fonts
+ln -s $DOTFILES/syntax $DOTFILES/vimfiles/syntax
 touch $HOME/weather
 
 #vim -c ':BundleInstall!'
