@@ -57,16 +57,16 @@ if exists('&ambiwidth')
 endif
 " }}}
 
-"BASIC " {{{ 
+"BASIC " {{{
 " set gfn=ゆたぽん（コーディング）\ 10
 set gfn=ゆたぽん（COD）K:h13
 
 set wrap
-set wildmenu    
+set wildmenu
 set smartindent
 set ignorecase smartcase
 " 行番号
-set number 
+set number
 set foldmethod=marker
 " インクリメンタルサーチ
 set incsearch
@@ -82,8 +82,8 @@ set shiftwidth=2
 set smarttab
 set showmatch
 set nobackup
-set splitright 
-set splitbelow 
+set splitright
+set splitbelow
 set visualbell
 set noequalalways
 set showtabline=2
@@ -113,7 +113,7 @@ nnoremap <silent> <S-Down>  :5wincmd +<CR>
 " helpの言語の優先順位
 set helplang=ja,en
 
-" window size 
+" window size
 " please push Alt+F10
 
 " COLOR
@@ -126,7 +126,7 @@ hi TabLine     term=reverse cterm=reverse ctermfg=white ctermbg=black
 hi TabLineSel  term=bold cterm=bold
 hi TabLineFill term=reverse cterm=reverse ctermfg=white ctermbg=black
 
-" % def ~ end 
+" % def ~ end
 runtime macros/matchit.vim
 
 " indent guide enable
@@ -151,7 +151,7 @@ set antialias                " アンチエイリアシング
 "autocmd InsertLeave * highlight StatusLine ctermfg=white
 
 "タブ文字、行末など不可視文字を表示する
-"set list 
+"set list
 "listで表示される文字のフォーマットを指定する
 "set listchars=eol:$,tab:>\ ,extends:<
 
@@ -177,7 +177,6 @@ autocmd BufWritePre * :%s/\s\+$//ge
 
 
 " }}}
-
 
 " Other " {{{
 " rails.vim {
@@ -336,26 +335,28 @@ autocmd BufRead, BufNewFile *.rd, *.rdoc set filetype=rdoc
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner' : 'vimproc'}
 let g:quickrun_config['rspec/bundle'] = {
-  \ 'type': 'rspec/bundle', 
-  \ 'filetype': 'rspec-result', 
-  \ 'command': 'rspec', 
-  \ 'cmdopt': "--format progress", 
+  \ 'type': 'rspec/bundle',
+  \ 'filetype': 'rspec-result',
+  \ 'command': 'rspec',
+  \ 'cmdopt': "--format progress",
   \ 'exec': "bundle exec %c %o %s %a"
   \}
 let g:quickrun_config['cucumber/bundle'] = {
-  \ 'type': 'cucumber/bundle', 
-  \ 'filetype': 'cucumber-result', 
-  \ 'command': 'cucumber', 
-  \ 'cmdopt': "--format progress", 
+  \ 'type': 'cucumber/bundle',
+  \ 'filetype': 'cucumber-result',
+  \ 'command': 'cucumber',
+  \ 'cmdopt': "--format progress",
   \ 'exec': "bundle exec %c %o %s %a"
   \}
 function! RSpecQuickrun()
     let b:quickrun_config = {'type' : 'rspec/bundle', 'split' : ''}
+    nnoremap <expr><silent> <Leader>lr "<Esc>:QuickRun -cmdopt \"--color --format progress -l " . line(".") . "\"<CR>"
 endfunction
 autocmd BufReadPost *_spec.rb call RSpecQuickrun()
 
 function! CucumberQuickrun()
     let b:quickrun_config = {'type' : 'cucumber/bundle', 'split' : ''}
+    nnoremap <expr><silent> <Leader>lr "<Esc>:QuickRun -cmdopt \"--format progress -l " . line(".") . "\"<CR>"
 endfunction
 autocmd BufReadPost *.feature call CucumberQuickrun()
 " " }}}
