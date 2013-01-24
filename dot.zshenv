@@ -1,2 +1,6 @@
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
+export JDK_HOME="$HOME/jdk1.6.0_34"
+export PATH="$JDK_HOME/bin:$PATH"
+export PATH="$PATH:$HOME/android-sdk-linux/tools"

@@ -1,4 +1,4 @@
-"Vim Bundles "  {{{
+"Vim Bundles "  {{{1
 "How to set up .
 "git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 "
@@ -39,14 +39,16 @@ Bundle 'taku-o/vim-toggle'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'ujihisa/rdoc.vim'
-"Bundle 'pekepeke/titanium-vim'
 Bundle 'smartchr'
-"Bundle 'ref.vim'
+Bundle 'ref.vim'
+Bundle 'pekepeke/unite-fileline'
+Bundle 'pekepeke/titanium-vim'
+Bundle 'Gist.vim'
 
 filetype plugin indent on     " required!
 " }}}
 
-" Japanese " {{{
+" Japanese " {{{1
 " 文字エンコーディング
 set fileencodings=utf-8,iso-2022-jp-3,eucjp-ms,cp932,ucs-bom,default,latin1
 " 改行コードの自動認識
@@ -57,7 +59,7 @@ if exists('&ambiwidth')
 endif
 " }}}
 
-"BASIC " {{{
+"BASIC " {{{1
 " set gfn=ゆたぽん（コーディング）\ 10
 set gfn=ゆたぽん（COD）K:h13
 
@@ -173,16 +175,33 @@ nmap g# g#zz
 " 保存する際に行末スペースを削除
 autocmd BufWritePre * :%s/\s\+$//ge
 
+" バッファのキー設定
+nnoremap bn :bprevious<CR>
+nnoremap bm :bnext<CR>
+nnoremap bd :bdelete<CR>
 
+" タブの設定
+nnoremap [tabcmd]  <nop>
+nmap     t [tabcmd]
 
+nnoremap <silent> [tabcmd]u :<C-u>tabnext<cr>
+nnoremap <silent> [tabcmd]U :<C-u>tabNext<cr>
+nnoremap <silent> [tabcmd]y :<C-u>tabprevious<cr>
+nnoremap <silent> [tabcmd]Y :<C-u>tabprevious<cr>
+nnoremap <silent> [tabcmd]e :<C-u>tabedit<cr>
+nnoremap <silent> [tabcmd]c :<C-u>tabclose<cr>
+nnoremap <silent> [tabcmd]o :<C-u>tabonly<cr>
+nnoremap <silent> [tabcmd]s :<C-u>tabs<cr>
 
 " }}}
 
-" Other " {{{
-" rails.vim {
+" Other " {{{1
+" rails.vim " {{{2
 "let g:rails_level=4
 let g:rails_default_file="app/controllers/application_controller.rb"
+" }}}
 
+" neocomplcache.vim " {{{2
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplcache.
@@ -263,15 +282,17 @@ let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+" }}}
+
 " , is: シェルを起動
 nnoremap <silent>  ,is :VimShell<CR>
 " , irb: irbを非同期で起動
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+" , ti: titaniumを非同期で起動
+nnoremap <silent> ,ti :VimShellInteractive titanium<CR>
 "
 
-"------------------------------------
-" unite.vim
-"------------------------------------
+" unite.vim "{{{2
 nnoremap    [unite]   <Nop>
 nmap     f [unite]
 " 入力モードで開始する
@@ -308,29 +329,12 @@ au FileType unite nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vspli
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC> :q<CR>
-
-" タブの設定
-nnoremap [tabcmd]  <nop>
-nmap     t [tabcmd]
-
-nnoremap <silent> [tabcmd]u :<C-u>tabnext<cr>
-nnoremap <silent> [tabcmd]U :<C-u>tabNext<cr>
-nnoremap <silent> [tabcmd]y :<C-u>tabprevious<cr>
-nnoremap <silent> [tabcmd]Y :<C-u>tabprevious<cr>
-nnoremap <silent> [tabcmd]e :<C-u>tabedit<cr>
-nnoremap <silent> [tabcmd]c :<C-u>tabclose<cr>
-nnoremap <silent> [tabcmd]o :<C-u>tabonly<cr>
-nnoremap <silent> [tabcmd]s :<C-u>tabs<cr>
-
-" バッファのキー設定
-nnoremap bn :bprevious<CR>
-nnoremap bm :bnext<CR>
-nnoremap bd :bdelete<CR>
+" }}}
 
 let mapleader=","
-
 autocmd BufRead, BufNewFile *.rd, *.rdoc set filetype=rdoc
 
+" quickrun.vim " {{{2
 " quickrun rspec
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner' : 'vimproc'}
@@ -341,6 +345,7 @@ let g:quickrun_config['rspec/bundle'] = {
   \ 'cmdopt': "--format progress",
   \ 'exec': "bundle exec %c %o %s %a"
   \}
+" quickrun cucumber
 let g:quickrun_config['cucumber/bundle'] = {
   \ 'type': 'cucumber/bundle',
   \ 'filetype': 'cucumber-result',
@@ -359,4 +364,5 @@ function! CucumberQuickrun()
     nnoremap <expr><silent> <Leader>lr "<Esc>:QuickRun -cmdopt \"--format progress -l " . line(".") . "\"<CR>"
 endfunction
 autocmd BufReadPost *.feature call CucumberQuickrun()
-" " }}}
+" }}}
+" }}}

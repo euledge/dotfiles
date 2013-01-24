@@ -18,14 +18,14 @@ case ${UID} in
     PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
     PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
     SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
         PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
     ;;
 *)
     PROMPT="${USER}@${HOST%%.*} %1~:%(!.#.$) "
     PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
     SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
         PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
     ;;
 esac
@@ -57,7 +57,7 @@ setopt nolistbeep
 
 ## Keybind configuration
 #
-# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes 
+# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
 #   to end of it)
 #
 bindkey -e
@@ -135,7 +135,7 @@ darwin*)
 freebsd*)
     case ${UID} in
     0)
-        updateports() 
+        updateports()
         {
             if [ -f /usr/ports/.portsnap.INDEX ]
             then
@@ -194,4 +194,3 @@ esac
 #
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
-export PATH="$HOME/.rbenv/bin:$PATH"
