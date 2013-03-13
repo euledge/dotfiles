@@ -1,6 +1,6 @@
 "Vim Bundles "  {{{1
 "How to set up .
-"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+"git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
 "
 set nocompatible               " be iMproved
 filetype off                   " required!
@@ -26,13 +26,11 @@ Bundle 'Shougo/unite.vim'
 Bundle 'tsukkee/unite-tag'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'basyura/unite-rails'
+Bundle 'ujihisa/unite-colorschema'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
-Bundle 'csexton/rvm.vim'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'cucumber.zip'
 Bundle 'thinca/vim-quickrun'
-Bundle 'tomasr/molokai'
 Bundle 'leshill/vim-json'
 Bundle 'taku-o/vim-ro-when-swapfound'
 Bundle 'taku-o/vim-toggle'
@@ -44,6 +42,9 @@ Bundle 'ref.vim'
 Bundle 'pekepeke/unite-fileline'
 Bundle 'pekepeke/titanium-vim'
 Bundle 'Gist.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
+Bundle 'vim-scripts/Colour-Sampler-Pack'
 
 filetype plugin indent on     " required!
 " }}}
@@ -119,14 +120,15 @@ set helplang=ja,en
 " please push Alt+F10
 
 " COLOR
-colorscheme molokai
-let g:molokai_original=1
-"syntax enable
+"colorscheme molokai
+"let g:molokai_original=1
+syntax enable
+colorscheme delek
 "set background=dark
 "colorscheme solarized
-hi TabLine     term=reverse cterm=reverse ctermfg=white ctermbg=black
-hi TabLineSel  term=bold cterm=bold
-hi TabLineFill term=reverse cterm=reverse ctermfg=white ctermbg=black
+"hi TabLine     term=reverse cterm=reverse ctermfg=white ctermbg=black
+"hi TabLineSel  term=bold cterm=bold
+"hi TabLineFill term=reverse cterm=reverse ctermfg=white ctermbg=black
 
 " % def ~ end
 runtime macros/matchit.vim
