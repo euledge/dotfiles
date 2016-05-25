@@ -2,7 +2,7 @@
   editor = /usr/bin/vim
   excludesfile = ~/.gitignore
 [user]
-	name = Hitoshi kuroyanagi
+	name = Hitoshi Kuroyanagi
 	email = h-kuro@minerva.co.jp
 [color]
   ui = auto
@@ -10,6 +10,8 @@
   a = add
   ad = add
   ada = add -A
+
+  aliases = !git config --get-regexp alias
 
   bl = blame
   br = branch
@@ -33,8 +35,9 @@
 
   gr = grep
 
-  l = log --format='[%h %ci] %s (%cn)' --date=local
-  lg = log --graph --format='[%h %ci] %s (%cn)' --date=local # Log Graph
+  l = log --decorate --oneline
+  lg = log --decorate --oneline --graph
+  ls = log --decorate --oneline --stat
   lp = log -p
 
   mg = merge

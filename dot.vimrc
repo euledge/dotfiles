@@ -15,8 +15,6 @@ Bundle 'gmarik/vundle'
 " original repos on github
 
 Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-endwise'
@@ -25,22 +23,17 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'tsukkee/unite-tag'
 Bundle 'h1mesuke/unite-outline'
-Bundle 'basyura/unite-rails'
 Bundle 'ujihisa/unite-colorscheme'
+Bundle 'pekepeke/unite-fileline'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
-Bundle 'cucumber.zip'
 Bundle 'thinca/vim-quickrun'
 Bundle 'leshill/vim-json'
 Bundle 'taku-o/vim-ro-when-swapfound'
 Bundle 'taku-o/vim-toggle'
 Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'ujihisa/rdoc.vim'
 Bundle 'smartchr'
 Bundle 'ref.vim'
-Bundle 'pekepeke/unite-fileline'
-Bundle 'pekepeke/titanium-vim'
 Bundle 'Gist.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'tomasr/molokai'
@@ -62,7 +55,7 @@ endif
 
 "BASIC " {{{1
 " set gfn=ゆたぽん（コーディング）\ 10
-set gfn=ゆたぽん（COD）K:h13
+"set gfn=ゆたぽん（COD）K:h13
 
 set wrap
 set wildmenu
@@ -90,7 +83,7 @@ set splitbelow
 set visualbell
 set noequalalways
 set showtabline=2
-
+set noequalalways
 syntax enable
 
 " キーバインド
@@ -198,10 +191,6 @@ nnoremap <silent> [tabcmd]s :<C-u>tabs<cr>
 " }}}
 
 " Other " {{{1
-" rails.vim " {{{2
-"let g:rails_level=4
-let g:rails_default_file="app/controllers/application_controller.rb"
-" }}}
 
 " neocomplcache.vim " {{{2
 " Disable AutoComplPop.
@@ -288,11 +277,7 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 " , is: シェルを起動
 nnoremap <silent>  ,is :VimShell<CR>
-" , irb: irbを非同期で起動
-nnoremap <silent> ,irb :VimShellInteractive irb<CR>
-" , ti: titaniumを非同期で起動
-nnoremap <silent> ,ti :VimShellInteractive titanium<CR>
-"
+
 
 " unite.vim "{{{2
 nnoremap    [unite]   <Nop>
@@ -313,16 +298,6 @@ nnoremap <silent> [unite]u :<C-u>Unite buffer file_mru<CR>
 nnoremap <silent> [unite]a :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " FuzzyFinder
 nnoremap <silent> [unite]z :<C-u>Unite file_rec<CR>
-" Unite rails
-nnoremap <silent> [unite]r :<C-u>Unite rails/
-nnoremap <silent> [unite]rmo :<C-u>Unite rails/model<CR>
-nnoremap <silent> [unite]rcon   :<C-u>Unite rails/controller<CR>
-nnoremap <silent> [unite]rvi :<C-u>Unite rails/view<CR>
-nnoremap <silent> [unite]rhel :<C-u>Unite rails/helper<CR>
-nnoremap <silent> [unite]rlib :<C-u>Unite rails/lib<CR>
-nnoremap <silent> [unite]rdb :<C-u>Unite rails/db<CR>
-nnoremap <silent> [unite]rconfig :<C-u>Unite rails/config<CR>
-nnoremap <silent> [unite]rlog :<C-u>Unite rails/log<CR>
 " タブで開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('tabopen')
 " 分割して開く
@@ -337,34 +312,6 @@ let mapleader=","
 autocmd BufRead, BufNewFile *.rd, *.rdoc set filetype=rdoc
 
 " quickrun.vim " {{{2
-" quickrun rspec
 let g:quickrun_config = {}
 let g:quickrun_config._ = {'runner' : 'vimproc'}
-let g:quickrun_config['rspec/bundle'] = {
-  \ 'type': 'rspec/bundle',
-  \ 'filetype': 'rspec-result',
-  \ 'command': 'rspec',
-  \ 'cmdopt': "--format progress",
-  \ 'exec': "bundle exec %c %o %s %a"
-  \}
-" quickrun cucumber
-let g:quickrun_config['cucumber/bundle'] = {
-  \ 'type': 'cucumber/bundle',
-  \ 'filetype': 'cucumber-result',
-  \ 'command': 'cucumber',
-  \ 'cmdopt': "--format progress",
-  \ 'exec': "bundle exec %c %o %s %a"
-  \}
-function! RSpecQuickrun()
-    let b:quickrun_config = {'type' : 'rspec/bundle', 'split' : ''}
-    nnoremap <expr><silent> <Leader>lr "<Esc>:QuickRun -cmdopt \"--color --format progress -l " . line(".") . "\"<CR>"
-endfunction
-autocmd BufReadPost *_spec.rb call RSpecQuickrun()
-
-function! CucumberQuickrun()
-    let b:quickrun_config = {'type' : 'cucumber/bundle', 'split' : ''}
-    nnoremap <expr><silent> <Leader>lr "<Esc>:QuickRun -cmdopt \"--format progress -l " . line(".") . "\"<CR>"
-endfunction
-autocmd BufReadPost *.feature call CucumberQuickrun()
-" }}}
 " }}}

@@ -15,10 +15,10 @@ git submodule update --init
 rm -rf $HOME/.bashrc $HOME/.gemrc $HOME/.gitconfig $HOME/.profile $HOME/.vimrc $HOME/.vim $HOME/scripts  $HOME/.fonts
 rm -rf $HOME/.zshrc $HOME/.zlogin $HOME/.zshenv
 
-#ln -s $DOTFILES/dot.bashrc $HOME/.bashrc
-#ln -s $DOTFILES/dot.zshrc $HOME/.zshrc
-#ln -s $DOTFILES/dot.zlogin $HOME/.zlogin
-#ln -s $DOTFILES/dot.zshenv $HOME/.zshenv
+ln -s $DOTFILES/dot.bashrc $HOME/.bashrc
+ln -s $DOTFILES/dot.zshrc $HOME/.zshrc
+ln -s $DOTFILES/dot.zlogin $HOME/.zlogin
+ln -s $DOTFILES/dot.zshenv $HOME/.zshenv
 ln -s $DOTFILES/dot.gemrc $HOME/.gemrc
 ln -s $DOTFILES/dot.gitconfig $HOME/.gitconfig
 ln -s $DOTFILES/dot.profile $HOME/.profile
@@ -33,4 +33,4 @@ cd $DOTFILES
 ln -s $DOTFILES/dot.vimrc $HOME/.vimrc
 ln -s $DOTFILES/vimfiles $HOME/.vim
 ln -s $DOTFILES/syntax $DOTFILES/vimfiles/syntax
-vim -c ':BundleInstall!'
+#vim -c ':BundleInstall!'

@@ -25,3 +25,8 @@ fi
 
 # set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk
+# Initialization for FDK command line tools.Mon Nov 23 22:10:45 2015
+FDK_EXE="/home/euledge/bin/FDK/Tools/linux"
+PATH=${PATH}:"/home/euledge/bin/FDK/Tools/linux"
+export PATH
+export FDK_EXE
